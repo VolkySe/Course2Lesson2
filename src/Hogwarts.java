@@ -1,9 +1,11 @@
 public class Hogwarts extends Person {
-    private int magicPower;
-    private int trasgressionDistance;
+    protected int magicPower;
+    protected int transgressionDistance;
 
-    public Hogwarts(String name, String surname) {
+    public Hogwarts(String name, String surname, int magicPower, int transgressionDistance) {
         super(name, surname);
+        this.magicPower = magicPower;
+        this.transgressionDistance = transgressionDistance;
     }
 
     public int getMagicPower() {
@@ -14,19 +16,17 @@ public class Hogwarts extends Person {
         this.magicPower = magicPower;
     }
 
-    public int getTrasgressionDistance() {
-        return trasgressionDistance;
+    public int getTransgressionDistance() {
+        return transgressionDistance;
     }
 
-    public void setTrasgressionDistance(int trasgressionDistance) {
-        this.trasgressionDistance = trasgressionDistance;
+    public void setTransgressionDistance(int transgressionDistance) {
+        this.transgressionDistance = transgressionDistance;
     }
 
     @Override
     public String toString() {
-        return "Hogwarts{" +
-                "magicPower=" + magicPower +
-                ", trasgressionDistance=" + trasgressionDistance +
-                '}';
+        return "Имя: " + name + ", фамилия: " + surname +
+                ". Сила магии: " + magicPower + ", дистанция трансгрессии: " + transgressionDistance;
     }
 }
