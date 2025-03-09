@@ -1,11 +1,27 @@
-public class Hogwarts extends Person {
-    protected int magicPower;
-    protected int transgressionDistance;
+import java.util.Objects;
 
-    public Hogwarts(String name, String surname, int magicPower, int transgressionDistance) {
-        super(name, surname);
+class Hogwarts {
+    private String name;
+    private int magicPower;
+    private int transgressionDistance;
+
+    public Hogwarts(String name, int magicPower, int transgressionDistance) {
+        this.name = name;
         this.magicPower = magicPower;
         this.transgressionDistance = transgressionDistance;
+    }
+
+    public String printDescription() {
+        return "Студент " + getName() + " обладает силой магии, равной " + getMagicPower()
+                + " и может трансгрессировать на дистанцию " + getTransgressionDistance();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getMagicPower() {
@@ -25,8 +41,25 @@ public class Hogwarts extends Person {
     }
 
     @Override
-    public String toString() {
-        return "Имя: " + name + ", фамилия: " + surname +
-                ". Сила магии: " + magicPower + ", дистанция трансгрессии: " + transgressionDistance;
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Hogwarts hogwarts = (Hogwarts) o;
+        return magicPower == hogwarts.magicPower && transgressionDistance == hogwarts.transgressionDistance && Objects.equals(name, hogwarts.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, magicPower, transgressionDistance);
+    }
+
+    public static void compareStudents(Hogwarts student1, Hogwarts student2) {
+        if (student1.magicPower + student1.transgressionDistance > student2.magicPower + student2.transgressionDistance) {
+            System.out.println(student1.name + " лучше, чем " + student2.name);
+        } else if (student1.magicPower + student1.transgressionDistance < student2.magicPower + student2.transgressionDistance) {
+            System.out.println(student2.name + " лучше, чем " + student1.name);
+        } else {
+            System.out.println(student1.name + " и " + student2.name + " равны по силе магии и трансгрессии.");
+        }
+
     }
 }
